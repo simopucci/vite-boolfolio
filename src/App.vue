@@ -2,6 +2,8 @@
   import axios from 'axios';
   import { api, store } from './store';
 
+  import AppHeader from './components/AppHeader.vue';
+
     export default {
       data() {
         return {
@@ -9,6 +11,8 @@
           store,
         };
       },
+
+      components: { AppHeader },
 
       created() {
         axios.get(api.baseUrl + 'projects').then((res) => {
@@ -20,9 +24,9 @@
 </script>
 
 <template>
-  <div class="container mt-5">
-    <h1 class="mb-4"> {{ title }}</h1>
+  <app-header :title="title" class="ps-5" />
 
+  <div class="container mt-5">
     <div v-for="project in store.projects" class="mb-3 border-bottom">
       <ul>
         <li><strong>ID: </strong>{{ project.id }}</li>
